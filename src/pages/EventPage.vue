@@ -15,6 +15,14 @@
             >
                 <- Voltar
             </button>
+
+            
+            <button
+                class="button-secundary fit-button"
+                @click="fullscreen"
+            >
+                FullScreen
+            </button>
         </header>
 
         <section class="events-list center-width">
@@ -128,6 +136,10 @@ export default defineComponent({
             this.popupAdminPasswords= false;
             this.popupBackEvent     = false;
             clearTimeout(this.timerToClose);
+        },
+        
+        fullscreen() {
+            document.documentElement.requestFullscreen();
         }
     },
     setup() {
@@ -157,6 +169,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .header-area {
     margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
 }
 .event-body {
     background-size: cover;

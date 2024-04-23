@@ -258,6 +258,9 @@ export default defineComponent({
             return
         },
     },
+    monted() {
+        document.documentElement.requestFullscreen();
+    },
     setup() {
         const store = useStore();
         const route = useRoute();
