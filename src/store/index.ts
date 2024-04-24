@@ -402,18 +402,10 @@ const useStore = defineStore({
             let questionList = currentcategory.questionsList;
             if(currentcategory.questionsList.length > 1) {
 
-                console.log(this.lastQuestion);
-                console.log('last question:', this.lastQuestion );
-                questionList = currentcategory.questionsList.filter(question => {
-                    console.log('current:', question.id, this.lastQuestion.questionId,  question.id !== this.lastQuestion.questionId );
-                    
+                questionList = currentcategory.questionsList.filter(question => {                    
                     return question.id !== this.lastQuestion.questionId;
                 })
             }
-            console.log('last question:', this.lastQuestion );
-            console.log('quastionlist:', questionList);
-
-
             const randomQuestion = questionList[Math.floor(Math.random() * questionList.length)];
 
             if(!randomQuestion) {
