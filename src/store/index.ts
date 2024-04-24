@@ -128,7 +128,7 @@ const useStore = defineStore({
                                 },
                                 {
                                     id : '12-2',
-                                    question : 'Como você se sentiria se fizesse um curso profissionalizante em uma escola SEM laboratórios?',
+                                    question : 'Como você se sentiria se fizesse um curso profissionalizante em uma escola COM laboratórios de última geração?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -152,7 +152,7 @@ const useStore = defineStore({
                                 },
                                 {
                                     id : '12-3',
-                                    question : 'Como você se sentiria se pudesse pagar um preço ACESSÍVEL por um curso técnico ou profissionalizante em uma escola referência?',
+                                    question : 'Como você se sentiria se pagasse um preço CARO por um curso técnico ou profissionalizante em uma escola qualquer?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -182,7 +182,7 @@ const useStore = defineStore({
                             questionsList : [
                                 {
                                     id : '13-1',
-                                    question : 'Se sua empresa contasse com consultoria especializada gratuita, como você se sentiria?',
+                                    question : 'Se sua empresa contasse com suporte técnico especializado, como você se sentiria?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -236,7 +236,7 @@ const useStore = defineStore({
                             questionsList : [
                                 {
                                     id : '14-1',
-                                    question : 'Como você se sentiria se pagasse um preço ACESSÍVEL em uma consulta médica?',
+                                    question : 'Como você se sentiria se tivesse um cartão saúde gratuito com BENEFÍCIOS?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -261,30 +261,6 @@ const useStore = defineStore({
                                 {
                                     id : '14-2',
                                     question : 'Como você se sentiria se pagasse um preço MUITO CARO em um exame médico SIMPLES?',
-                                    options  : [
-                                        {
-                                            optionId    : '1',
-                                            soundId     : '1',
-                                            title       : 'Feliz',
-                                            description : '',
-                                        },
-                                        {
-                                            optionId    : '2',
-                                            soundId     : '2',
-                                            title       : 'Indiferente',
-                                            description : '',
-                                        },
-                                        {
-                                            optionId    : '3',
-                                            soundId     : '3',
-                                            title       : 'Triste',
-                                            description : '',
-                                        },
-                                    ] 
-                                },
-                                {
-                                    id : '14-3',
-                                    question : 'Como você se sentiria se tivesse um cartão saúde gratuito com BENEFÍCIOS?',
                                     options  : [
                                         {
                                             optionId    : '1',
