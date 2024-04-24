@@ -120,7 +120,6 @@ export default defineComponent({
             }
         },
 
-        
         matchPasswords(passwordsMatch : Boolean) : void {
             this.popupAdminPasswords = true;
             if(passwordsMatch) {
@@ -160,7 +159,6 @@ export default defineComponent({
             categoriesList,
             eventId,
             styleEvent,
-            store,
         }
     }
 })

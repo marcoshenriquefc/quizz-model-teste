@@ -140,27 +140,25 @@ export default defineComponent({
     },
     data() {
         return {
+            // Question data
             randomQuestion: {} as IQuestion,
             selectedOption: null as IAnswer | null,
-            
+
+            // Popup answer
+            timerQuestionReload : null as number | null,
             popupOpen : false,
             popupText : '',
-
             timeAutoReload : 2,
-
+            
             // Admin states
             popupAdminOpen : false,
             adminPass : '',
             timeClosePopup : 35,
             errorInfo : '',
             timer : null as number | null,
-            timerQuestionReload : null as number | null,
         };
     },
     methods: {
-        // emitAnswer(answer) {
-        //     console.log('response', answer);
-        // },
         checkAnswer(answer : IAnswer | null) : void  {
             if (answer === null) {
                 alert('Por favor, selecione uma opção antes de confirmar.');
@@ -170,27 +168,21 @@ export default defineComponent({
             switch(answer.soundId) {
                 case '1':
                     this.playSound(audioHappy);
-                    // this.openPopup(this.selectedOption);
                     break;
                 
                 case '2':
                     this.playSound(audioInd);
-                    // this.openPopup(this.selectedOption);
                     break;
 
                 case '3':
                     this.playSound(audioSad);
-                    // this.openPopup(this.selectedOption);
                     break;
 
                 default :
-                    alert('Por favor, selecione uma opção antes de confirmar.');
                     return;
                 break;
             }
             this.finishQuestion(answer);
-
-            
             // this.saveDataAnswer();
         },
 
@@ -208,25 +200,16 @@ export default defineComponent({
         // },
 
         finishQuestion(selectedOption : IAnswer) : void {
-
             this.openPopup(selectedOption);
-            console.log('reset')
-
-
 
             if(this.reloadPage) {
                 this.backRouter();
                 return
             }
-
-            // this.$router.go(0);
-            console.log('reset')
             this.resetQuestion();
         },
 
         resetQuestion() {
-            
-            console.log('question')
             const reloadTime = this.timeAutoReload * 1000;
             
             if(this.timerQuestionReload) {
@@ -238,8 +221,6 @@ export default defineComponent({
                 this.closePopup();
             }, reloadTime);
         },
-
-
 
         backRouter() : void {
             this.$router.replace(`/event/${this.dataId.eventId}/${this.dataId.categoryId}`);
@@ -294,7 +275,7 @@ export default defineComponent({
         },
 
         verifyAdmin() : void {
-            const authAdmin = this.store.verifyAdminPass(this.adminPass);
+            const authAdmin = this.verifyAdminPass(this.adminPass);
 
             if(authAdmin) {
                 this.$router.replace(`/event/${this.dataId.eventId}`)
@@ -319,6 +300,14 @@ export default defineComponent({
     mounted() {
         this.changeRandomQuestion();
     },
+    unmounted(){
+        if(this.timer) {
+            clearTimeout(this.timer);
+        }
+        if(this.timerQuestionReload) {
+            clearTimeout(this.timerQuestionReload);
+        }
+    },
     setup() {
         const store = useStore();
         const route = useRoute();
@@ -326,31 +315,30 @@ export default defineComponent({
         const eventId = route.params.id as string;
         const categoryId = route.params.categoryId as string;
 
-        // const randomQuestion = store.getRandomQuestion({
-        //     categoryId: categoryId,
-        //     eventId: eventId
-        // });
         const dataId = {
             categoryId  : categoryId,
             eventId     : eventId,
         };
 
-        const getRandomQuestion = store.getRandomQuestion;
-
         const dataEvent = store.getCurrentEventData(dataId.eventId);
         const reloadPage = dataEvent?.reloadPage;
 
+        // Get Style page
         let styleEvent = null as IStyleEvent | null;
-        if(dataEvent?.styleEvent) {
+        if(dataEvent && dataEvent.styleEvent) {
             styleEvent = dataEvent.styleEvent;
         }
 
+        // export actions to methods
+        const getRandomQuestion = store.getRandomQuestion;
+        const verifyAdminPass   = store.verifyAdminPass;
+
         return {
-            getRandomQuestion,
             dataId,
             reloadPage,
             styleEvent,
-            store,
+            verifyAdminPass,
+            getRandomQuestion,
         }
     }
 })
