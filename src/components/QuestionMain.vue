@@ -39,6 +39,8 @@
 import { defineComponent } from 'vue';
 
 import { IAnswer, IQuestion, IStyleEvent } from '../interfaces/DataDB';
+import useStore from '../store';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
     name : 'QuestionMain',
@@ -59,7 +61,7 @@ export default defineComponent({
         styleEvent: {
             type : Object as () => IStyleEvent | null,
             required: false,
-        }
+        },
     },
     methods: {
         checkAnswer() {
@@ -75,21 +77,35 @@ export default defineComponent({
         }
     },
     mounted() {
-        console.log('mountou novo');
-
-        const text = this.question.question;
-        
-        if ('speechSynthesis' in window && this.synthesis) {
-            this.utterance = new SpeechSynthesisUtterance(text);
-            this.utterance.volume = 1; // Define o volume para o máximo (1)
-            this.synthesis.speak(this.utterance);
-        } else {
-            console.error('A API de síntese de fala não é suportada neste navegador.');
+        if(this.activeReader) {
+            const text = this.question.question;
+            
+            if ('speechSynthesis' in window && this.synthesis) {
+                this.utterance = new SpeechSynthesisUtterance(text);
+                this.utterance.volume = 1; // Define o volume para o máximo (1)
+                this.synthesis.speak(this.utterance);
+            } else {
+                console.error('A API de síntese de fala não é suportada neste navegador.');
+            }
         }
     },
     beforeUnmount() {
-        if (this.synthesis && this.utterance) {
-        this.synthesis.cancel(); // Cancela a síntese de fala ao desmontar o componente
+        if(this.activeReader) {
+            if (this.synthesis && this.utterance) {
+                // Cancela a síntese de fala ao desmontar o componente
+                this.synthesis.cancel();
+            }
+        }
+    },
+    setup() {
+        const store = useStore();
+        const route = useRoute();
+
+        const eventId = route.params.id as string;
+        const activeReader = store.getQuestionReaderByID(eventId);
+
+        return {
+            activeReader,
         }
     }
 

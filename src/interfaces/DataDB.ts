@@ -2,6 +2,7 @@ export interface IEvent {
     id              : string,
     title           : string,
     reloadPage      : Boolean, 
+    reader         ?: Boolean,
     categoriesist   : ICategory[],
     styleEvent     ?: IStyleEvent,
 }

@@ -13,7 +13,7 @@
             <header class="header-question" v-if="styleEvent">
                 <img class="event-logotype" :src="styleEvent.logoImage" alt="Logotipo do evento">
             </header>
-    
+
             <QuestionMain
                 v-if="randomQuestion.id"
                 :key="randomQuestion.id"
@@ -21,41 +21,7 @@
                 :styleEvent="styleEvent"
                 @changeAnswer="checkAnswer"
             />
-            
-            <!-- <main class="main-question">
-                <h1 class="title-question" :style="styleEvent ? {color : styleEvent.textColor} : ''">
-                    {{ randomQuestion.question }}
-                </h1>
-    
-                <section class="options-area">
-                    <label
-                        v-for="(option, index) in randomQuestion.options"
-                        :key="index"
-                        class="button-option"
-                        :for="`option-${index}`"
-                        :style="{
-                            backgroundColor: styleEvent?.optionColor,
-                        }"
-                    >
-                        <input 
-                            :id="`option-${index}`"
-                            type="radio"
-                            v-model="selectedOption"
-                            :value="option"
-                            @change="checkAnswer"
-                        >
-        
-                        <span v-if="option.icon" :key="option.icon.id">
-                            <img :src="option.icon.source"  width="32px" :alt="option.icon.alt">
-                        </span>
-        
-                        {{ option.title }}
-                    </label>
-                </section>
-    
-                <button v-if="false" class="button-primary fit-button" @click="checkAnswer">Confirmar</button>
-            </main> -->
-    
+
             <footer>
                 <button
                     class="config-button"

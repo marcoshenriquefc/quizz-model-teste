@@ -19,6 +19,7 @@ const useStore = defineStore({
                     id          : '1',
                     title       : 'Tapete Vermelho',
                     reloadPage  : true,
+                    reader      : true,
                     categoriesist: [
                         {
                             id: '11',
@@ -282,6 +283,30 @@ const useStore = defineStore({
                                         },
                                     ] 
                                 },
+                                {
+                                    id : '14-3',
+                                    question : 'Como você se sentiria se pagasse um preço ACESSÍVEL em uma consulta médica?',
+                                    options  : [
+                                        {
+                                            optionId    : '1',
+                                            soundId     : '1',
+                                            title       : 'Feliz',
+                                            description : '',
+                                        },
+                                        {
+                                            optionId    : '2',
+                                            soundId     : '2',
+                                            title       : 'Indiferente',
+                                            description : '',
+                                        },
+                                        {
+                                            optionId    : '3',
+                                            soundId     : '3',
+                                            title       : 'Triste',
+                                            description : '',
+                                        },
+                                    ] 
+                                },
                             ]
                         },
                     ],
@@ -397,7 +422,7 @@ const useStore = defineStore({
             return randomQuestion;
         },
         
-        changeLastQuestion(questionData: ILastQuestionData) :void {
+        changeLastQuestion(questionData: ILastQuestionData) : void {
             this.lastQuestion.eventId       = questionData.eventId;
             this.lastQuestion.categoryId    = questionData.categoryId;
             this.lastQuestion.questionId    = questionData.questionId;
@@ -408,6 +433,37 @@ const useStore = defineStore({
                 return true;
             }
             return false;
+        },
+
+        getQuestionReaderByID(eventId : string) : Boolean | null {
+            const currentEventIndex = this.events.findIndex( currentEvent => {
+                return currentEvent.id === eventId;
+            })
+
+            const readerActive = this.events[currentEventIndex].reader;
+
+            if(readerActive != undefined) {
+                return readerActive
+            }
+
+            return null
+        },
+
+        toggleQuestionReader(eventId : string) : Boolean | null {
+            const currentEventIndex = this.events.findIndex( currentEvent => {
+                return currentEvent.id === eventId;
+            })
+
+            if(currentEventIndex !== -1 ) {
+                const readerActive = this.events[currentEventIndex].reader;
+
+                this.events[currentEventIndex].reader       = !readerActive;
+                this.events[currentEventIndex].reloadPage   = !readerActive;
+
+                return !readerActive
+            }
+
+            return null
         }
     },
 });

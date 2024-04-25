@@ -15,7 +15,6 @@
             >
                 <- Voltar
             </button>
-
             
             <button
                 class="button-secundary fit-button"
@@ -24,6 +23,17 @@
                 FullScreen
             </button>
         </header>
+
+        <div class="header-area center-width">
+            
+            <button
+                class="button-primary fit-button"
+                :class="questionReader ? 'ativado' : 'desativado'"
+                @click="toggleReader"
+            >
+                Leitor de Perguntas: {{  questionReader ? 'Ativado' : 'Desativado' }}
+            </button>
+        </div>
 
         <section class="events-list center-width">
             <CardBox
@@ -85,7 +95,8 @@ export default defineComponent({
 
             popupBackEvent : false,
 
-            timerToClose : 0 as number,
+            timerToClose    : 0 as number,
+            questionReader  : true as Boolean | null,
         }
     },
     methods : {
@@ -139,7 +150,14 @@ export default defineComponent({
         
         fullscreen() {
             document.documentElement.requestFullscreen();
+        },
+
+        toggleReader(){
+            this.questionReader = this.toggleQuestionReader(this.eventId);
         }
+    },
+    mounted() {
+        this.questionReader = this.getQuestionReader(this.eventId);
     },
     setup() {
         const store = useStore();
@@ -155,10 +173,15 @@ export default defineComponent({
             styleEvent = dataEvent.styleEvent;
         }
 
+        const getQuestionReader     = store.getQuestionReaderByID;
+        const toggleQuestionReader  = store.toggleQuestionReader;
+
         return {
             categoriesList,
             eventId,
             styleEvent,
+            toggleQuestionReader,
+            getQuestionReader,
         }
     }
 })
@@ -172,5 +195,24 @@ export default defineComponent({
 }
 .event-body {
     background-size: cover;
+}
+
+.button-primary {
+    &.ativado {
+        background-color: #14452f94;
+        color:white;
+
+        &:hover {
+            background-color: #14452F;
+        }
+    }
+
+    &.desativado {
+        background-color: #960019a1;
+        color:white;
+        &:hover {
+            background-color: #960018;
+        }
+    }
 }
 </style>
