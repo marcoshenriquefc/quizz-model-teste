@@ -51,7 +51,7 @@ const useStore = defineStore({
                                 },
                                 {
                                     id : '11-2',
-                                    question : 'Como você se sentiria se a sua escola NÃO preparasse o aluno para o futuro do trabalho?',
+                                    question : 'Como você se sentiria se a sua escola NÃO desse o apoio pedagógico necessário?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -153,7 +153,7 @@ const useStore = defineStore({
                                 },
                                 {
                                     id : '12-3',
-                                    question : 'Como você se sentiria se pagasse um preço CARO por um curso técnico ou profissionalizante em uma escola qualquer?',
+                                    question : 'Como você se sentiria se o seu curso profissionalizante NÃO tivesse aulas práticas?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -183,7 +183,7 @@ const useStore = defineStore({
                             questionsList : [
                                 {
                                     id : '13-1',
-                                    question : 'Se sua empresa contasse com suporte técnico especializado, como você se sentiria?',
+                                    question : 'Como você se sentiria se sua empresa não tivesse uma equipe técnica?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -207,7 +207,7 @@ const useStore = defineStore({
                                 },
                                 {
                                     id : '13-2',
-                                    question : 'Se sua empresa NÃO contasse com suporte para transformação digital, como você se sentiria?',
+                                    question : 'Como você se sentiria se os profissionais que lhe atendem não fossem treinados?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -237,7 +237,7 @@ const useStore = defineStore({
                             questionsList : [
                                 {
                                     id : '14-1',
-                                    question : 'Como você se sentiria se tivesse um cartão saúde gratuito com BENEFÍCIOS?',
+                                    question : 'Como você se sentiria se pagasse um preço ACESSÍVEL em uma consulta médica?',
                                     options  : [
                                         {
                                             optionId    : '1',
@@ -261,31 +261,7 @@ const useStore = defineStore({
                                 },
                                 {
                                     id : '14-2',
-                                    question : 'Como você se sentiria se pagasse um preço MUITO CARO em um exame médico SIMPLES?',
-                                    options  : [
-                                        {
-                                            optionId    : '1',
-                                            soundId     : '1',
-                                            title       : 'Feliz',
-                                            description : '',
-                                        },
-                                        {
-                                            optionId    : '2',
-                                            soundId     : '2',
-                                            title       : 'Indiferente',
-                                            description : '',
-                                        },
-                                        {
-                                            optionId    : '3',
-                                            soundId     : '3',
-                                            title       : 'Triste',
-                                            description : '',
-                                        },
-                                    ] 
-                                },
-                                {
-                                    id : '14-3',
-                                    question : 'Como você se sentiria se pagasse um preço ACESSÍVEL em uma consulta médica?',
+                                    question : 'Como você se sentiria se tivesse um Cartão Clínica Sesi gratuito com vários BENEFÍCIOS?',
                                     options  : [
                                         {
                                             optionId    : '1',
