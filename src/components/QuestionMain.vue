@@ -45,6 +45,9 @@ export default defineComponent({
     data() {
         return {
             selectedOption: null as IAnswer | null,
+
+            synthesis: window.speechSynthesis,
+            utterance: null as SpeechSynthesisUtterance | null
         }
     },
     emits: ['changeAnswer'],
@@ -75,16 +78,20 @@ export default defineComponent({
         console.log('mountou novo');
 
         const text = this.question.question;
-        const synthesis = window.speechSynthesis;
         
-        if ('speechSynthesis' in window && synthesis) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.volume = 1;
-            synthesis.speak(utterance);
+        if ('speechSynthesis' in window && this.synthesis) {
+            this.utterance = new SpeechSynthesisUtterance(text);
+            this.utterance.volume = 1; // Define o volume para o máximo (1)
+            this.synthesis.speak(this.utterance);
         } else {
             console.error('A API de síntese de fala não é suportada neste navegador.');
         }
     },
+    beforeUnmount() {
+        if (this.synthesis && this.utterance) {
+        this.synthesis.cancel(); // Cancela a síntese de fala ao desmontar o componente
+        }
+    }
 
 })
 </script>
