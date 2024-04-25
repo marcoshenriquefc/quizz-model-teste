@@ -73,6 +73,17 @@ export default defineComponent({
     },
     mounted() {
         console.log('mountou novo');
+
+        const text = this.question.question;
+        const synthesis = window.speechSynthesis;
+        
+        if ('speechSynthesis' in window && synthesis) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.volume = 1;
+            synthesis.speak(utterance);
+        } else {
+            console.error('A API de síntese de fala não é suportada neste navegador.');
+        }
     },
 
 })

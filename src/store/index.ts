@@ -18,7 +18,7 @@ const useStore = defineStore({
                 {
                     id          : '1',
                     title       : 'Tapete Vermelho',
-                    reloadPage  : false,
+                    reloadPage  : true,
                     categoriesist: [
                         {
                             id: '11',
