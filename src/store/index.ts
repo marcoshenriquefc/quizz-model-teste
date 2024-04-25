@@ -183,7 +183,7 @@ const useStore = defineStore({
                             questionsList : [
                                 {
                                     id : '13-1',
-                                    question : 'Como você se sentiria se sua empresa não tivesse uma equipe técnica?',
+                                    question : 'Como vc se sentiria se recebesse uma consultoria que aumentasse a produtividade da sua empresa?',
                                     options  : [
                                         {
                                             optionId    : '1',
