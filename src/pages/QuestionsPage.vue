@@ -331,7 +331,7 @@ export default defineComponent({
 
         .event-logotype {
             width: 100%;
-            max-width: 280px;
+            max-width: 240px;
         }
     }
 
@@ -341,7 +341,7 @@ export default defineComponent({
         justify-content: center;
         align-items: center;
 
-        padding: 4rem 2rem;
+        padding: 2.5rem 2rem;
         max-width: 75%;
         text-align: center;
 

@@ -126,7 +126,7 @@ export default defineComponent({
     gap: 3rem;
 
     .title-question {
-        font-size: 2.5rem;
+        font-size: 1.75rem;
         font-weight: 500;
     }
 
@@ -134,9 +134,9 @@ export default defineComponent({
         display: flex;
         gap: 2rem;
         .button-option{
-            padding: 1.25rem 3.5rem;
+            padding: 1rem 3rem;
             border-radius: .25rem;
-            font-size: 2rem ;
+            font-size: 1.5rem ;
         
             background-color: antiquewhite;
             color: white;
